@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon - Premium Pro E-Commerce Experience</title>
+    <!-- Tailwind CSS Integration via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for Modern Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Vector Engine for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #0f172a; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #475569; }
+    </style>
+</head>
+<body class="bg-[#f7f9fa] text-slate-900 antialiased min-h-screen flex flex-col">
+
+    <!-- MODERN NAVIGATION SYSTEM BAR -->
+    <header class="sticky top-0 z-50 shadow-md">
+        <!-- Main Dark Nav Strip -->
+        <div class="bg-[#131921] text-white px-4 sm:px-8 py-3 flex flex-wrap items-center justify-between gap-4">
+            <!-- Brand Logo Signature Wrapper -->
+            <div class="flex items-center gap-6 cursor-pointer" onclick="navigate('home')">
+                <div class="flex flex-col">
+                    <span class="font-extrabold text-2xl tracking-tighter text-white">amazon<span class="text-[#ff9900] font-black">pro</span></span>
+                    <span class="text-[10px] text-slate-400 font-medium tracking-widest uppercase -mt-1">Next-Gen Portal</span>
+                </div>
+            </div>
+
+            <!-- Enhanced Search Architecture Bar Group -->
+            <div class="flex flex-1 max-w-2xl items-center relative group">
+                <div class="absolute left-3 text-slate-400 group-focus-within:text-[#ff9900] transition-colors z-10">
+                    <i class="fa-solid fa-magnifying-glass text-sm"></i>
+                </div>
+                <input type="text" id="global-search-input" onkeyup="if(event.key === 'Enter') executeProductFilter()" placeholder="Search modern electronics, smart gear, premium apparel..." 
+                       class="w-full pl-10 pr-24 py-2.5 bg-slate-800 text-white rounded-lg outline-none focus:bg-white focus:text-slate-900 focus:ring-2 focus:ring-[#ff9900] text-sm transition-all shadow-inner border border-slate-700/50 focus:border-transparent">
+                <button onclick="executeProductFilter()" class="absolute right-1 bg-[#ff9900] hover:bg-[#e68a00] text-slate-950 px-4 py-1.5 rounded-md transition font-bold text-xs uppercase tracking-wider shadow-md">
+                    Search
+                </button>
+            </div>
+
+            <!-- Header Action Links Network -->
+            <nav class="flex items-center gap-6 text-sm font-semibold tracking-wide">
+                <button onclick="navigate('home')" class="hover:text-[#ff9900] text-slate-300 transition flex items-center gap-2 px-2 py-1.5 rounded-md hover:bg-slate-800/40">
+                    <i class="fa-solid fa-house text-xs"></i> Home
+                </button>
+                <button onclick="navigate('backend-hub')" class="text-cyan-400 hover:text-cyan-300 transition flex items-center gap-2 px-3 py-1.5 rounded-md bg-cyan-950/40 border border-cyan-800/30 hover:bg-cyan-950/60 shadow-sm">
+                    <i class="fa-solid fa-server text-xs"></i> Cloud Operations Center
+                </button>
+                <!-- Reactive Cart Icon System Badge -->
+                <button onclick="toggleCartModal()" class="relative bg-slate-800 hover:bg-slate-700 text-white px-4 py-2 rounded-lg border border-slate-700 transition flex items-center gap-2 shadow-md group">
+                    <i class="fa-solid fa-cart-shopping text-[#ff9900] text-sm transition-transform group-hover:scale-110"></i> 
+                    <span class="hidden sm:inline">Cart</span>
+                    <span id="cart-badge-count" class="absolute -top-2 -right-2 bg-[#ff9900] text-slate-950 text-xs font-black rounded-full h-5 w-5 flex items-center justify-center shadow-lg border-2 border-[#131921]">0</span>
+                </button>
+            </nav>
+        </div>
+
+        <!-- Secondary Categories Sub-Header Navigation -->
+        <div class="bg-[#232f3e] text-slate-200 text-xs px-4 sm:px-8 py-2.5 flex items-center gap-6 overflow-x-auto border-t border-slate-700/30 shadow-inner">
+            <span class="font-bold text-white hover:text-[#ff9900] cursor-pointer transition flex items-center gap-1.5 bg-slate-800 px-3 py-1 rounded-md border border-slate-700/40"><i class="fa-solid fa-bars"></i> All Categories</span>
+            <span class="hover:text-[#ff9900] cursor-pointer font-medium tracking-wide transition" onclick="quickFilter('Electronics')">Electronics</span>
+            <span class="hover:text-[#ff9900] cursor-pointer font-medium tracking-wide transition" onclick="quickFilter('Apparel')">Apparel</span>
+            <span class="hover:text-[#ff9900] cursor-pointer font-medium tracking-wide transition" onclick="quickFilter('Fitness')">Fitness</span>
+            <div class="ml-auto flex items-center gap-2 text-slate-400 font-mono hidden md:flex text-[11px]">
+                <span class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                Infrastructure Pipeline: <span class="text-emerald-400 font-bold">Active</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CENTRAL DISPLAY FRAME CONTAINER -->
+    <main class="flex-grow max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8">
+        
+        <!-- ================= E-COMMERCE HOME STOREFRONT VIEW ================= -->
+        <div id="view-home" class="view-panel block space-y-12">
+            
+            <!-- Highly Decorated Hero Showcase Crossfade Element Banner -->
+            <div class="relative bg-gradient-to-br from-[#0b1329] via-[#111c44] to-[#1a2342] rounded-3xl p-8 sm:p-12 text-white overflow-hidden shadow-2xl border border-slate-800/60 flex flex-col md:flex-row items-center justify-between gap-8">
+                <div class="max-w-xl relative z-10 space-y-4 md:text-left text-center">
+                    <span class="bg-[#ff9900]/10 text-[#ffb84d] border border-[#ff9900]/30 text-[10px] uppercase font-bold tracking-widest px-3 py-1 rounded-full bg-opacity-40 backdrop-blur-md">
+                        <i class="fa-solid fa-bolt mr-1"></i> Premium Storefront Integration 
+                    </span>
+                    <h2 class="text-3xl sm:text-5xl font-black tracking-tight leading-tight bg-gradient-to-r from-white via-slate-100 to-slate-300 bg-clip-text">
+                        The Next Generation of Smart Shopping Portal
+                    </h2>
+                    <p class="text-slate-400 text-sm sm:text-base font-light leading-relaxed">
+                        Experience lightning-fast client interfaces synced directly with robust reactive enterprise service simulations. Explore added records instantly below.
+                    </p>
+                    <div class="flex flex-wrap gap-3 pt-2 justify-center md:justify-start">
+                        <button onclick="quickFilter('all')" class="bg-[#ff9900] hover:bg-[#e68a00] text-slate-950 text-xs font-bold uppercase tracking-wider px-6 py-3 rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5">
+                            Browse All Products
+                        </button>
+                        <button onclick="navigate('backend-hub')" class="bg-slate-800/80 hover:bg-slate-700 border border-slate-700 text-xs font-semibold tracking-wide px-5 py-3 rounded-xl transition-all text-slate-200">
+                            Inspect Active Stream Architectures
+                        </button>
+                    </div>
+                </div>
+                <!-- Premium Vector Product Display Graphic Placeholder Wrapper -->
+                <div class="relative w-full max-w-[280px] h-[220px] items-center justify-center hidden md:flex">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-cyan-500/20 to-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
+                    <i class="fa-solid fa-boxes-packing text-[10rem] text-slate-700/40 absolute bottom-4 drop-shadow-2xl"></i>
+                    <i class="fa-solid fa-bag-shopping text-[6rem] text-[#ff9900]/70 absolute top-2 right-4 transform rotate-12 drop-shadow-md"></i>
+                </div>
+            </div>
+
+            <!-- Main Dynamic Marketplace Render Block Container -->
+            <div class="space-y-6">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-slate-200 pb-4">
+                    <div>
+                        <h3 class="text-2xl font-extrabold tracking-tight text-slate-900 flex items-center gap-2.5">
+                            <i class="fa-solid fa-fire text-[#ff9900]"></i> Curated Product Catalog 
+                            <span id="catalog-category-label" class="text-sm font-medium text-slate-500 bg-slate-200/60 px-3 py-0.5 rounded-full">(All Items Loaded)</span>
+                        </h3>
+                        <p class="text-xs text-slate-400 mt-0.5 font-medium">Real-time array mappings rendering layout nodes instantly</p>
+                    </div>
+                    <div class="flex items-center gap-2 text-xs font-mono bg-slate-900 text-slate-400 px-3 py-1.5 rounded-lg border border-slate-800 shadow-sm">
+                        <span class="inline-block w-2 h-2 rounded-full bg-cyan-400"></span>
+                        Pipeline View Engine: Active
+                    </div>
+                </div>
+
+                <!-- Structural Grid Core for Template Injections -->
+                <div id="product-display-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    <!-- JavaScript dynamically injects decorated cards here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= CLOUD MANAGEMENT OPERATIONS HUB (DECORATED DARK MODE) ================= -->
+        <div id="view-backend-hub" class="view-panel hidden space-y-8">
+            <div class="bg-slate-900 text-white rounded-3xl p-6 sm:p-8 border border-slate-800 shadow-xl space-y-6">
+                <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-4 border-b border-slate-800 pb-5">
+                    <div>
+                        <h2 class="text-2xl font-black text-white tracking-tight flex items-center gap-2.5">
+                            <i class="fa-solid fa-microchip text-cyan-400"></i> Distributed Cloud Systems Dashboard
+                        </h2>
+                        <p class="text-xs text-slate-400 mt-1">Simulated control room monitoring live microservices routing layouts, memory array states, and data pipelines mappings natively.</p>
+                    </div>
+                    <span class="text-[10px] uppercase font-bold bg-cyan-950 text-cyan-400 border border-cyan-800/50 px-3 py-1 rounded-full tracking-wider w-max">
+                        System Diagnostics: Optimal
+                    </span>
+                </div>
+
+                <!-- API Application Runtime Matrix Metrics Cards Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 font-mono text-xs">
+                    <div class="bg-slate-950 border border-slate-800/60 p-4 rounded-xl flex items-center justify-between shadow-inner group hover:border-cyan-500/30 transition-all">
+                        <div>
+                            <span class="text-slate-500 block uppercase font-bold tracking-wider text-[10px]">App Controller Class</span>
+                            <span class="text-sm font-bold font-sans text-slate-200">@RestController</span>
+                        </div>
+                        <div class="bg-cyan-950/60 text-cyan-400 p-3 rounded-lg"><i class="fa-solid fa-network-wired text-lg"></i></div>
+                    </div>
+                    <div class="bg-slate-950 border border-slate-800/60 p-4 rounded-xl flex items-center justify-between shadow-inner group hover:border-emerald-500/30 transition-all">
+                        <div>
+                            <span class="text-slate-500 block uppercase font-bold tracking-wider text-[10px]">Registry Dependency Engine</span>
+                            <span class="text-sm font-bold font-sans text-emerald-400">Spring Boot Native Lifecycle</span>
+                        </div>
+                        <div class="bg-emerald-950/60 text-emerald-400 p-3 rounded-lg"><i class="fa-solid fa-circle-check text-lg"></i></div>
+                    </div>
+                    <div class="bg-slate-950 border border-slate-800/60 p-4 rounded-xl flex items-center justify-between shadow-inner group hover:border-amber-500/30 transition-all">
+                        <div>
+                            <span class="text-slate-500 block uppercase font-bold tracking-wider text-[10px]">Processing Data Streams</span>
+                            <span class="text-sm font-bold font-sans text-amber-400">Lambda Predicate Parsing</span>
+                        </div>
+                        <div class="bg-amber-950/60 text-amber-400 p-3 rounded-lg"><i class="fa-solid fa-bolt-lightning text-lg"></i></div>
+                    </div>
+                </div>
+
+                <!-- Dual Layout Split Panel System Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Dynamic Data Object Registration Component Form Box -->
+                    <div class="bg-slate-950 border border-slate-800 rounded-2xl p-5 shadow-2xl space-y-4">
+                        <h4 class="text-sm font-bold uppercase font-sans text-slate-200 border-b border-slate-800 pb-3 flex items-center justify-between">
+                            <span><i class="fa-solid fa-square-plus text-cyan-400 mr-2"></i> Register New Stock Product</span>
+                            <span class="bg-cyan-950 text-cyan-400 border border-cyan-800/40 font-mono text-[9px] px-2 py-0.5 rounded font-black">POST</span>
+                        </h4>
+                        
+                        <div class="space-y-4 text-xs">
+                            <div>
+                                <label class="block font-bold text-slate-400 mb-1.5 uppercase tracking-wider text-[9px]">Product Title Label String</label>
+                                <input type="text" id="api-input-title" placeholder="e.g., UltraWide Curved Monitor" class="w-full p-2.5 bg-slate-900 border border-slate-800 text-white rounded-lg focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 outline-none transition-all placeholder-slate-600">
+                            </div>
+                            <div>
+                                <label class="block font-bold text-slate-400 mb-1.5 uppercase tracking-wider text-[9px]">Category Domain Mapping</label>
+                                <select id="api-input-category" class="w-full p-2.5 bg-slate-900 border border-slate-800 text-white rounded-lg focus:ring-1 focus:ring-cyan-500 outline-none transition-all">
+                                    <option value="Electronics">Electronics</option>
+                                    <option value="Apparel">Apparel</option>
+                                    <option value="Fitness">Fitness</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block font-bold text-slate-400 mb-1.5 uppercase tracking-wider text-[9px]">Double Value Currency Price ($)</label>
+                                <input type="number" id="api-input-price" placeholder="499.99" step="0.01" class="w-full p-2.5 bg-slate-900 border border-slate-800 text-white rounded-lg focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 outline-none transition-all placeholder-slate-600">
+                            </div>
+                            <button onclick="executeBackendCrudCreate()" class="w-full bg-cyan-600 hover:bg-cyan-500 text-slate-950 font-black py-3 rounded-xl transition shadow-lg text-xs uppercase tracking-wider text-center pt-2">
+                                Save Entry (repository.save)
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Server Console Framework Real-time Logging Monitor Panel -->
+                    <div class="bg-slate-950 text-slate-300 rounded-2xl p-5 border border-slate-800 shadow-2xl lg:col-span-2 flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center border-b border-slate-800 pb-3 mb-1">
+                                <h4 class="text-xs font-bold font-mono text-cyan-400 flex items-center gap-2.5">
+                                    <i class="fa-solid fa-terminal animate-pulse"></i> Distributed Application Console Output
+                                </h4>
+                                <button onclick="clearConsoleLogs()" class="text-[10px] font-mono border border-slate-800 px-3 py-1 rounded-md hover:bg-slate-900 transition-colors text-slate-500 hover:text-slate-300">Clear Stream Terminal</button>
+                            </div>
+                            <!-- Output Logging Rows List Wrapper Element Container -->
+                            <div id="api-terminal-logs" class="font-mono text-[11px] space-y-2 max-h-[220px] overflow-y-auto pr-2 custom-scrollbar leading-relaxed">
+                                <p class="text-slate-600">[INFO] Tomcat embedded container initialization completed successfully over network protocol port: 8080 (http)</p>
+                                <p class="text-slate-600">[INFO] Hikari connection pool initialized. Transaction isolation mapping parameters verified.</p>
+                                <p class="text-cyan-400 font-semibold">[API METRICS] Gateway resolved query parsing requests route @GetMapping("/api/v1/products") - Data stream chunk delivered successfully.</p>
+                            </div>
+                        </div>
+                        <div class="pt-4 border-t border-slate-800 flex flex-wrap gap-4 text-[10px] font-mono text-slate-500">
+                            <span>Database State Node: <strong class="text-emerald-400 font-bold">Connected</strong></span>
+                            <span>•</span>
+                            <span>Auto-Configuration: <strong class="text-cyan-400 font-bold">Active Mapping</strong></span>
+                            <span>•</span>
+                            <span>Server Node: <strong class="text-purple-400 font-bold">Cluster-01</strong></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ================= PREMIUM CART SLIDE-OUT MODAL SYSTEM DRAWER ================= -->
+    <div id="cart-modal-container" class="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-xs hidden transition-all duration-300 flex justify-end">
+        <!-- Inside Sliding Panel Block Wrapper Container Card -->
+        <div class="bg-white w-full max-w-md h-full shadow-2xl p-6 sm:p-8 flex flex-col justify-between overflow-y-auto border-l border-slate-200">
+            <div class="space-y-6">
+                <div class="flex justify-between items-center border-b border-slate-100 pb-4">
+                    <div class="flex items-center gap-2.5">
+                        <div class="bg-[#ff9900]/10 text-[#ff9900] p-2 rounded-lg"><i class="fa-solid fa-bag-shopping text-sm"></i></div>
+                        <h3 class="text-lg font-black text-slate-900">Your Shopping Basket</h3>
+                    </div>
+                    <button onclick="toggleCartModal()" class="text-slate-400 hover:text-slate-900 text-xl transition-colors p-1.5 hover:bg-slate-100 rounded-md"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <!-- Runtime Array Loop Template Targets Wrapper Insertion Node -->
+                <div id="cart-items-wrapper" class="space-y-4 max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar">
+                    <!-- Target for inline content node modifications inside functions -->
+                </div>
+            </div>
+
+            <!-- Dynamic Aggregate Calculation Checkout Footer Box Component -->
+            <div class="border-t border-slate-200 pt-5 mt-6 space-y-4">
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200/60 space-y-2 text-xs">
+                    <div class="flex justify-between text-slate-500 font-medium">
+                        <span>Items Subtotal Count Value:</span>
+                        <span id="cart-items-count-label" class="font-mono font-bold text-slate-700">0 units</span>
+                    </div>
+                    <div class="flex justify-between text-slate-500 font-medium">
+                        <span>Estimated Shipping Charges:</span>
+                        <span class="text-emerald-600 font-bold uppercase tracking-wider text-[10px] bg-emerald-50 px-2 py-0.5 rounded">Free Premium Delivery</span>
+                    </div>
+                    <hr class="border-slate-200/80 my-1">
+                    <div class="flex justify-between font-black text-slate-900 text-base">
+                        <span>Order Total Cost Balance:</span>
+                        <span id="cart-total-label" class="font-mono text-lg text-slate-950">$0.00</span>
+                    </div>
+                </div>
+                <button onclick="simulateAsynchronousCheckoutPipeline()" class="w-full bg-[#ff9900] hover:bg-[#e68a00] text-slate-950 font-extrabold py-3.5 rounded-xl text-center uppercase tracking-wider text-xs transition-all shadow-md transform hover:-translate-y-0.5">
+                    Proceed to Checkout Settlement
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN GLOBAL FOOTER WRAPPER BRAND FRAME -->
+    <footer class="bg-[#131921] text-slate-400 text-xs border-t border-slate-800 py-8 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div class="space-y-1 sm:text-left text-center">
+                <p class="font-bold text-slate-200 text-sm">Amazon Portal Prototype - Next-Gen E-Commerce Core Shell</p>
+                <p class="text-slate-500 text-[11px]">&copy; 2026 Enterprise Distributed Application Sandbox. Built using modular layouts and asynchronous execution threads cleanly.</p>
+            </div>
+            <div class="flex gap-4 text-base text-slate-500">
+                <span class="hover:text-[#ff9900] cursor-pointer transition-colors" title="Tailwind Utility Architecture Layer Verified"><i class="fa-brands fa-css3-alt"></i></span>
+                <span class="hover:text-[#ff9900] cursor-pointer transition-colors" title="Functional Programming Scope Verified"><i class="fa-brands fa-js"></i></span>
+                <span class="hover:text-[#ff9900] cursor-pointer transition-colors" title="Dynamic State Machine Synchronization Active"><i class="fa-brands fa-react"></i></span>
+                <span class="hover:text-[#ff9900] cursor-pointer transition-colors" title="REST API Route Mapping Simulation Active"><i class="fa-solid fa-database"></i></span>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ================= APPLICATIONS RUNTIME CORE CONTROL SCRIPT LOGIC ================= -->
+    <script>
+        // ================= CLIENT SEED TRANSACTION RECORDS (Database Repository Arrays) =================
+        let databaseProducts = [
+            { id: 1, title: "Pro Wireless ANC Studio Headphones", category: "Electronics", price: 129.99, image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&auto=format&fit=crop&q=60", rating: 4.8 },
+            { id: 2, title: "Smart GPS Fitness Tracker Sport Edition", category: "Electronics", price: 199.50, image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&auto=format&fit=crop&q=60", rating: 4.5 },
+            { id: 3, title: "Embroidered Breathable Running Shoes", category: "Fitness", price: 85.00, image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&auto=format&fit=crop&q=60", rating: 4.2 },
+            { id: 4, title: "Minimalist Leather Travel Backpack", category: "Apparel", price: 58.00, image: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=500&auto=format&fit=crop&q=60", rating: 4.6 },
+            { id: 5, title: "Ergonomic Backlit Mechanical Keyboard", category: "Electronics", price: 112.25, image: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=500&auto=format&fit=crop&q=60", rating: 4.7 },
+            { id: 6, title: "Heavy Duty Hex Iron Dumbbell Weight Set", category: "Fitness", price: 140.00, image: "https://images.unsplash.com/photo-1638536532686-d610adfc8e5c?w=500&auto=format&fit=crop&q=60", rating: 4.4 }
+        ];
+
+        // Volatile Application Context App Memory (Simulating Component runtime memory states)
+        let applicationCartState = JSON.parse(localStorage.getItem('amazon_pro_cart')) || [];
+
+        // ================= DESKTOP SCREEN PLATFORM MULTIPLEXER ROUTING CONTROLS =================
+        function navigate(viewTargetId) {
+            document.querySelectorAll('.view-panel').forEach(panel => {
+                panel.classList.add('hidden');
+                panel.classList.remove('block');
+            });
+
+            const activeNode = document.getElementById(`view-${viewTargetId}`);
+            if (activeNode) {
+                activeNode.classList.remove('hidden');
+                activeNode.classList.add('block');
+            }
+            appendTerminalLog(`[ROUTING ENGINE] Dispatched view modification tracker handler. Current screen view viewport adjusted target coordinates focus: view-${viewTargetId}`, "text-cyan-400 font-medium");
+        }
+
+        // ================= DYNAMIC ITEM CARD DECK INJECTOR RENDERING MATRIX =================
+        function renderCatalogDisplay(filteringTargetArray) {
+            const displayTargetGridNode = document.getElementById('product-display-grid');
+            displayTargetGridNode.innerHTML = ''; // Purge active inner structural children 
+
+            if(filteringTargetArray.length === 0) {
+                displayTargetGridNode.innerHTML = `
+                    <div class="col-span-full py-16 text-center text-slate-400 font-mono text-sm border-2 border-dashed border-slate-200 bg-white rounded-3xl p-8 shadow-inner">
+                        <i class="fa-solid fa-cube text-2xl mb-2 text-slate-300 block"></i> No stock instances found matching your filter criteria coordinates parameters inside repositories lists.
+                    </div>`;
+                return;
+            }
+
+            // Map iteration logic constructing DOM structure block layouts cleanly
+            filteringTargetArray.forEach(product => {
+                const horizontalCardComponentHTML = `
+                    <div class="bg-white rounded-2xl border border-slate-200/70 shadow-sm hover:shadow-xl transition-all duration-300 p-4 flex flex-col justify-between group transform hover:-translate-y-1 relative">
+                        <div class="space-y-4">
+                            <!-- Visual Graphic Banner Container Row -->
+                            <div class="w-full h-44 bg-slate-50 rounded-xl overflow-hidden relative border border-slate-100">
+                                <img src="${product.image}" alt="${product.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                <span class="absolute top-2.5 left-2.5 bg-slate-950/80 backdrop-blur-md text-white font-mono text-[8px] font-black px-2 py-0.5 rounded-md uppercase tracking-wider border border-white/10 shadow-md">
+                                    ${product.category}
+                                </span>
+                            </div>
+                            <!-- Meta Product Content Descriptions Block -->
+                            <div class="space-y-1.5">
+                                <h4 class="font-bold text-sm text-slate-800 line-clamp-2 min-h-[40px] leading-tight group-hover:text-blue-600 transition-colors">${product.title}</h4>
+                                <div class="flex items-center gap-1.5">
+                                    <div class="flex text-amber-400 text-[10px]">
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                                    </div>
+                                    <span class="text-slate-400 font-mono text-[10px] font-semibold">${product.rating} Verified Rating</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Transaction Operations Footer Matrix Strip Row -->
+                        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+                            <span class="text-lg font-black text-slate-950 font-mono tracking-tight">$${product.price.toFixed(2)}</span>
+                            <button onclick="addItemToCartState(${product.id})" class="bg-slate-950 hover:bg-[#ff9900] text-white hover:text-slate-950 font-extrabold text-xs px-3.5 py-2 rounded-xl transition-all duration-200 shadow-md flex items-center gap-2 uppercase tracking-wider text-[10px] border border-transparent hover:border-[#ff9900]">
+                                <i class="fa-solid fa-cart-plus text-xs"></i> Buy Item
+                            </button>
+                        </div>
+                    </div>`;
+                displayTargetGridNode.insertAdjacentHTML('beforeend', horizontalCardComponentHTML);
+            });
+        }
+
+        // ================= DYNAMIC FILTER STRING SEARCH COMPILATION ENGINES =================
+        function executeProductFilter() {
+            const rawSearchQuery = document.getElementById('global-search-input').value.toLowerCase().trim();
+            document.getElementById('catalog-category-label').innerText = `(Filtered query matches: "${rawSearchQuery}")`;
+            
+            // Evaluates text queries strings against dataset item parameters records
+            const resolvedFilteredProducts = databaseProducts.filter(item => 
+                item.title.toLowerCase().includes(rawSearchQuery) || 
+                item.category.toLowerCase().includes(rawSearchQuery)
+            );
+            renderCatalogDisplay(resolvedFilteredProducts);
+        }
+
+        function quickFilter(categoryValue) {
+            document.getElementById('global-search-input').value = ''; // Flush string value modifications 
+            
+            if(categoryValue === 'all') {
+                document.getElementById('catalog-category-label').innerText = "(All Items Loaded)";
+                renderCatalogDisplay(databaseProducts);
+            } else {
+                document.getElementById('catalog-category-label').innerText = `(Category Type: ${categoryValue})`;
+                const itemsMatch = databaseProducts.filter(p => p.category === categoryValue);
+                renderCatalogDisplay(itemsMatch);
+            }
+            navigate('home');
+        }
+
+        // ================= LOCAL APPLICATION MEMORY CONFIGURATIONS (Component State Synced) =================
+        function addItemToCartState(productIdTarget) {
+            const chosenItemEntity = databaseProducts.find(p => p.id === productIdTarget);
+            if (!chosenItemEntity) return;
+
+            // Search active item identifiers array bounds caches values 
+            const preExistingCartMatch = applicationCartState.find(entry => entry.product.id === productIdTarget);
+            
+            if (preExistingCartMatch) {
+                preExistingCartMatch.quantity += 1;
+            } else {
+                applicationCartState.push({ product: chosenItemEntity, quantity: 1 });
+            }
+
+            synchronizeStateAndInterfaceViews();
+            appendTerminalLog(`[STATE SYNCHRONIZER] Transferred context data record variables block into shopping basket tracker allocations. ID reference: ${productIdTarget}`, "text-amber-400 font-medium");
+        }
+
+        function removeCartItemRow(productIdTarget) {
+            applicationCartState = applicationCartState.filter(entry => entry.product.id !== productIdTarget);
+            synchronizeStateAndInterfaceViews();
+            appendTerminalLog(`[STATE SYNCHRONIZER] Dropped target indices row assignment mappings pointer indexing key reference ID: ${productIdTarget}`, "text-red-400 font-medium");
+        }
+
+        function synchronizeStateAndInterfaceViews() {
+            // Commit variables block modifications safely into browser local storage partitions 
+            localStorage.setItem('amazon_pro_cart', JSON.stringify(applicationCartState));
+
+            // Reduction arithmetic summation expressions compiling net metrics values parameters
+            const aggregateItemUnitsCount = applicationCartState.reduce((sum, current) => sum + current.quantity, 0);
+            document.getElementById('cart-badge-count').innerText = aggregateItemUnitsCount;
+
+            renderCartModalLayoutTree();
+        }
+
+        function renderCartModalLayoutTree() {
+            const cartWrapperElement = document.getElementById('cart-items-wrapper');
+            const subtotalUnitsCountLabel = document.getElementById('cart-items-count-label');
+            const totalLabelElement = document.getElementById('cart-total-label');
+            
+            cartWrapperElement.innerHTML = '';
+
+            const aggregateItemUnitsCount = applicationCartState.reduce((sum, current) => sum + current.quantity, 0);
+            subtotalUnitsCountLabel.innerText = `${aggregateItemUnitsCount} unit${aggregateItemUnitsCount !== 1 ? 's' : ''}`;
+
+            if (applicationCartState.length === 0) {
+                cartWrapperElement.innerHTML = `
+                    <div class="py-16 text-center text-slate-400 font-mono text-xs space-y-2 border border-dashed border-slate-200 bg-slate-50/50 rounded-2xl p-6 shadow-inner">
+                        <i class="fa-solid fa-basket-shopping text-3xl text-slate-300 block animate-pulse"></i>
+                        <p>Your shopping basket memory array reports empty balances.</p>
+                    </div>`;
+                totalLabelElement.innerText = "$0.00";
+                return;
+            }
+
+            let computedFinancialRunningSum = 0;
+
+            applicationCartState.forEach(entry => {
+                const combinedRowCost = entry.product.price * entry.quantity;
+                computedFinancialRunningSum += combinedRowCost;
+
+                const inlineRowComponentHTML = `
+                    <div class="flex items-center gap-3 bg-slate-50 p-3 rounded-xl border border-slate-200/50 text-xs font-sans hover:bg-slate-100/50 transition-colors">
+                        <img src="${entry.product.image}" class="w-12 h-12 rounded-lg object-cover border border-slate-200/70 shadow-sm flex-shrink-0">
+                        <div class="flex-grow min-w-0">
+                            <h5 class="font-bold text-slate-800 truncate leading-tight">${entry.product.title}</h5>
+                            <p class="text-slate-400 font-mono text-[10px] mt-1 font-semibold">Qty Count: ${entry.quantity} x $${entry.product.price.toFixed(2)}</p>
+                        </div>
+                        <div class="text-right flex flex-col justify-between items-end h-full pl-2">
+                            <span class="font-bold font-mono text-slate-950">$${combinedRowCost.toFixed(2)}</span>
+                            <button onclick="removeCartItemRow(${entry.product.id})" class="text-red-500 hover:text-red-700 font-bold mt-1.5 text-[10px] flex items-center gap-1 bg-red-50 hover:bg-red-100/80 px-2 py-0.5 rounded-md transition-colors" title="Remove index from collection array state context.">
+                                <i class="fa-solid fa-trash-can text-[9px]"></i> Delete
+                            </button>
+                        </div>
+                    </div>`;
+                cartWrapperElement.insertAdjacentHTML('beforeend', inlineRowComponentHTML);
+            });
+
+            totalLabelElement.innerText = `$${computedFinancialRunningSum.toFixed(2)}`;
+        }
+
+        function toggleCartModal() {
+            document.getElementById('cart-modal-container').classList.toggle('hidden');
+        }
+
+        // ================= ASYNCHRONOUS SIMULATION PARSERS (PROMISE CHAINS) =================
+        function simulateAsynchronousCheckoutPipeline() {
+            if(applicationCartState.length === 0) {
+                alert("Cannot process checkout settlements pipeline operations over empty contextual state memories.");
+                return;
+            }
+
+            const netValueTotalStr = document.getElementById('cart-total-label').innerText;
+            appendTerminalLog(`[ASYNC ENGINE] Instantiating parallel data streaming parameters mapping payment clearing transaction values sum: ${netValueTotalStr}`, "text-amber-400 font-semibold");
+            
+            toggleCartModal(); // Close out cart interface modal canvas fields
+
+            // Promise pattern design abstraction mimicking standard asynchronous Fetch network architecture configurations
+            new Promise((resolve, reject) => {
+                let connectionLatencyCounter = 0;
+                const incrementalIntervalTimer = setInterval(() => {
+                    connectionLatencyCounter += 20;
+                    appendTerminalLog(`[SERIALIZER STREAM] Packing JSON authorization records structure context payloads... ${connectionLatencyCounter}% completed.`, "text-slate-500");
+                    if(connectionLatencyCounter >= 100) {
+                        clearInterval(incrementalIntervalTimer);
+                        resolve({ httpResponseStatus: 201, clearingTokenRef: "TXN_PRO_AMZN_" + Math.floor(Math.random() * 899999 + 100000) });
+                    }
+                }, 350);
+            })
+            .then(payloadResponse => {
+                appendTerminalLog(`[CLOUD MICROSERVICE ROUTE] Target server resolved validation logic hooks pipeline safely. HTTP STATUS PAYLOAD CODE: ${payloadResponse.httpResponseStatus} Allocated Tracking Signature Token: ${payloadResponse.clearingTokenRef}`, "text-emerald-400 font-bold");
+                alert(`Order Dispatched Successfully!\nFinancial Settlement Token Verification Reference: ${payloadResponse.clearingTokenRef}\n\nLocal interface basket states flushed down cleanly.`);
+                
+                // Discard data variables memory parameters blocks back to initialization values
+                applicationCartState = [];
+                synchronizeStateAndInterfaceViews();
+            })
+            .catch(errorStateDetails => {
+                appendTerminalLog(`[GATEWAY PIPELINE CRITICAL RUNTIME ERROR] Data serialization process failed tracking errors back to connection routes.`, "text-red-500 font-black");
+            });
+        }
+
+        // ================= RUNTIME DATABASE MANIPULATIONS CONTROLLERS (Simulated CRUD Repository layer) =================
+        function executeBackendCrudCreate() {
+            const rawInjectedTitle = document.getElementById('api-input-title').value.trim();
+            const rawInjectedCategory = document.getElementById('api-input-category').value;
+            const rawInjectedPrice = parseFloat(document.getElementById('api-input-price').value);
+
+            // Constraint verification evaluations mapping matching backend framework schema checks
+            if(!rawInjectedTitle || isNaN(rawInjectedPrice) || rawInjectedPrice <= 0) {
+                appendTerminalLog("[SCHEMA ANNOTATION EXCEPTION] Blocked dynamic persistent creation workflow. Transmitted data structural properties values did not match object specification requirements.", "text-red-400 font-bold");
+                alert("Invalid configuration values input variables attributes declared. Audit target product fields conditions before committing.");
+                return;
+            }
+
+            // Construct new data entity object mapping properties bounds
+            const simulatedNewProductEntityRecord = {
+                id: databaseProducts.length + 1,
+                title: rawInjectedTitle,
+                category: rawInjectedCategory,
+                price: rawInjectedPrice,
+                image: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=500&auto=format&fit=crop&q=60", // Premium fallbacks placeholder structural visualization graphic asset
+                rating: parseFloat((Math.random() * 0.9 + 4.0).toFixed(1))
+            };
+
+            // Prepend product element natively inside volatile collection arrays (Emulating repository.save() framework behavior actions)
+            databaseProducts.unshift(simulatedNewProductEntityRecord);
+            
+            // Log changes summary history straight down into system console logger container
+            appendTerminalLog(`[GATEWAY DISPATCHER ROUTING Layer] @PostMapping annotation resolved target route mapping /api/v1/products successfully. Volatile in-memory persistence schema state mutated. Generated Object Identity Record Primary ID Key value: ${simulatedNewProductEntityRecord.id}`, "text-emerald-400 font-medium");
+            
+            // Flush layout inputs entry configurations parameters text fields
+            document.getElementById('api-input-title').value = '';
+            document.getElementById('api-input-price').value = '';
+
+            // Cascade update modifications straight back down user view grids models panel layouts
+            renderCatalogDisplay(databaseProducts);
+            alert(`Transient Record Committed Successfully:\n${simulatedNewProductEntityRecord.title} attached into running runtime memory repositories databases catalogs.`);
+        }
+
+        function appendTerminalLog(logMessageString, tailwindColorTokenClass = "text-slate-300") {
+            const targetOutputConsoleBoxNode = document.getElementById('api-terminal-logs');
+            const targetTimestampToken = new Date().toISOString().slice(11, 19);
+            
+            const structuredLogRowLineHTML = `<p class="${tailwindColorTokenClass}"><span class="text-slate-700 font-semibold font-mono">[LOG ${targetTimestampToken}]</span> ${logMessageString}</p>`;
+            targetOutputConsoleBoxNode.insertAdjacentHTML('beforeend', structuredLogLineHTML);
+            
+            // Maintain layout container box auto-scroll adjustments calculations automatically
+            targetOutputConsoleBoxNode.scrollTop = targetOutputConsoleBoxNode.scrollHeight;
+        }
+
+        function clearConsoleLogs() {
+            document.getElementById('api-terminal-logs').innerHTML = `<p class="text-slate-600 font-mono text-[11px]">[SYSTEM COMMAND] Logging stream memory tracks flushed out cleanly by terminal control supervisor action overrides instructions.</p>`;
+        }
+
+        // ================= APPLICATION LIFECYCLE INITIALIZATION MOUNT ONLOAD INITIALIZER HOOK =================
+        window.addEventListener('DOMContentLoaded', () => {
+            renderCatalogDisplay(databaseProducts);
+            synchronizeStateAndInterfaceViews();
+            appendTerminalLog("[BOOT ENGINE ROUTINE] All modular core visualization components views successfully verified, mounted, and compiled inside individual runtime boundaries frames safely.", "text-purple-400 font-semibold");
+        });
+    </script>
+</body>
+</html>
